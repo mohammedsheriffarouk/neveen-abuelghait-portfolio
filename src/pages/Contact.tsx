@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState, type FormEvent, type ReactNode } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { AlertCircle, Camera, CheckCircle2, Mail, MapPin, Send } from 'lucide-react';
+import { AlertCircle, CheckCircle2, Mail, MapPin, Send } from 'lucide-react';
+import { InstagramIcon } from '../components/BrandIcons';
 import { socialLinks } from '../data/socialLinks';
 import { isPlaceholder } from '../data/placeholder';
 import { ExternalCTA, PageHeader, scrollToId, usePlatformLabel } from '../components/ui';
@@ -85,7 +86,7 @@ export default function Contact() {
 
   const methods = [
     { icon: <Mail className="h-5 w-5" />, label: t('contact.email'), value: c.email, href: isPlaceholder(c.email) ? '' : `mailto:${c.email}` },
-    { icon: <Camera className="h-5 w-5" />, label: t('contact.instagram'), value: '@neveenabuelghait', href: socialLinks.find((l) => l.platform === 'instagram')?.url ?? '' },
+    { icon: <InstagramIcon className="h-5 w-5" />, label: t('contact.instagram'), value: '@neveenabuelghait', href: socialLinks.find((l) => l.platform === 'instagram')?.url ?? '' },
     { icon: <MapPin className="h-5 w-5" />, label: t('contact.basedIn'), value: c.location, href: '' },
   ];
 
@@ -99,7 +100,7 @@ export default function Contact() {
             <ul className="space-y-3">
               {methods.map((m) => (
                 <li key={m.label} className="card-wf flex items-center gap-4 p-4">
-                  <span className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-line">{m.icon}</span>
+                  <span className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-accent">{m.icon}</span>
                   <div className="min-w-0">
                     <p className="wf-label">{m.label}</p>
                     {m.href ? (

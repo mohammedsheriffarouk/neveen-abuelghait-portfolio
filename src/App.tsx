@@ -4,7 +4,6 @@ import { LocaleProvider } from './i18n/LocaleContext';
 import Home from './pages/Home';
 import Programs from './pages/Programs';
 import ProgramDetail from './pages/ProgramDetail';
-import Media from './pages/Media';
 import Contact from './pages/Contact';
 import NotFound from './pages/NotFound';
 import CvPrint from './pages/CvPrint';
@@ -25,7 +24,7 @@ export default function App() {
           <Route path="about" element={<Navigate to="/" replace />} />
           <Route path="programs" element={<Programs />} />
           <Route path="programs/:slug" element={<ProgramDetail />} />
-          <Route path="media" element={<Media />} />
+          <Route path="media" element={<Navigate to="/programs" replace />} />
           <Route path="gallery" element={<Navigate to="/" replace />} />
           <Route path="experience" element={<Navigate to="/" replace />} />
           <Route path="education" element={<Navigate to="/" replace />} />

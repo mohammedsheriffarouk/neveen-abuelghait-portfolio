@@ -27,13 +27,13 @@ export default function CvPrint() {
         html, body { background: #fff !important; }
         .cv-sheet { width: 210mm; min-height: 297mm; padding: 14mm 15mm 12mm; font-size: 10.5pt; line-height: 1.6; }
         .cv-sheet h1 { font-size: 26pt; line-height: 1.2; margin: 0; }
-        .cv-sheet h2 { font-size: 12.5pt; margin: 0 0 2.5mm; padding-bottom: 1.5mm; border-bottom: 1.5px solid rgb(255 150 100); }
+        .cv-sheet h2 { font-size: 12.5pt; margin: 0 0 2.5mm; padding-bottom: 1.5mm; border-bottom: 1.5px solid rgb(191 189 254); }
         .cv-sheet section { margin-top: 5mm; break-inside: avoid; }
         .cv-row { break-inside: avoid; }
         .cv-sheet[data-lang='ar'], .cv-sheet[data-lang='ar'] * { font-family: 'Amiri', serif; }
         .cv-sheet[data-lang='ar'] h1, .cv-sheet[data-lang='ar'] h2, .cv-sheet[data-lang='ar'] strong { font-weight: 700; }
         .cv-sheet[data-lang='en'], .cv-sheet[data-lang='en'] * { font-family: 'IBM Plex Sans Arabic', sans-serif; }
-        .cv-sheet[data-lang='en'] h1, .cv-sheet[data-lang='en'] h2 { font-family: 'Reem Kufi', sans-serif; }
+        .cv-sheet[data-lang='en'] h1, .cv-sheet[data-lang='en'] h2 { font-family: 'Outfit', sans-serif; }
         .cv-sheet[data-lang='en'] { font-size: 9.6pt; line-height: 1.5; }
         .cv-sheet[data-lang='en'] h1 { font-size: 24pt; }
       `}</style>

@@ -6,9 +6,10 @@
 import { Link } from 'react-router-dom';
 import { useCallback, type ReactNode } from 'react';
 import {
-  AudioLines, Briefcase, Camera, ChevronRight, ExternalLink, Globe, Image as ImageIcon, Mail,
-  MessageCircle, MonitorPlay, Music2, Podcast, Radio, RotateCcw, Search, Users, X as XIcon,
+  AudioLines, ChevronRight, ExternalLink, Globe, Image as ImageIcon, Mail,
+  MessageCircle, Podcast, Radio, RotateCcw, Search, X as XIcon,
 } from 'lucide-react';
+import { FacebookIcon, InstagramIcon, LinkedInIcon, TikTokIcon, YouTubeIcon } from './BrandIcons';
 import type { ExternalLink as ExtLink, ImageRef, Platform } from '../data/types';
 import { isRealUrl } from '../data/placeholder';
 import { useLocale } from '../i18n/LocaleContext';
@@ -95,9 +96,8 @@ export function Breadcrumbs({ items }: { items: { label: string; to?: string }[]
 
 export function PageHeader({ crumbs, title, intro, children }: { crumbs: { label: string; to?: string }[]; title: string; intro?: string; children?: ReactNode }) {
   return (
-    <header className="relative overflow-hidden border-b border-line bg-canvas">
-      <Rings className="pointer-events-none absolute -end-32 -top-40 h-[460px] w-[460px] text-calm/70 sm:-end-16" />
-      <div className="container-wf relative py-12 sm:py-16">
+    <header className="container-wf pt-6 sm:pt-8">
+      <div className="rounded-3xl bg-surface px-6 py-10 sm:px-10 sm:py-14">
         <Breadcrumbs items={crumbs} />
         <h1 className="max-w-3xl text-4xl tracking-tight sm:text-5xl lg:text-6xl">{title}</h1>
         {intro && <p className="mt-5 max-w-2xl text-base leading-relaxed text-subtle sm:text-lg">{intro}</p>}
@@ -110,10 +110,12 @@ export function PageHeader({ crumbs, title, intro, children }: { crumbs: { label
 /* ------------------------------------------------------------------ */
 /* Platforms                                                           */
 /* ------------------------------------------------------------------ */
-// Generic icons for the wireframe — replace with an official brand icon set in the visual phase.
-const platformIcons: Record<Platform, typeof Globe> = {
-  spotify: AudioLines, apple: Podcast, youtube: MonitorPlay, instagram: Camera, radio: Radio, soundcloud: AudioLines,
-  linkedin: Briefcase, facebook: Users, tiktok: Music2, x: XIcon, whatsapp: MessageCircle, email: Mail, website: Globe, other: Globe,
+type IconC = (p: { className?: string }) => JSX.Element;
+/** Official Spotify mark (full-colour) — the only platform icon that keeps its brand colour. */
+const SpotifyLogo: IconC = ({ className = 'h-4 w-4' }) => <img src="assets/images/logos/spotify-mark.png" alt="" aria-hidden className={`${className} shrink-0 object-contain`} />;
+const platformIcons: Record<Platform, typeof Globe | IconC> = {
+  spotify: SpotifyLogo, apple: Podcast, youtube: YouTubeIcon, instagram: InstagramIcon, radio: Radio, soundcloud: AudioLines,
+  linkedin: LinkedInIcon, facebook: FacebookIcon, tiktok: TikTokIcon, x: XIcon, whatsapp: MessageCircle, email: Mail, website: Globe, other: Globe,
 };
 
 /** Returns a function that gives the localized platform name. */
@@ -124,13 +126,13 @@ export function usePlatformLabel() {
 
 export function PlatformIcon({ platform, className = 'h-4 w-4' }: { platform: Platform; className?: string }) {
   const Icon = platformIcons[platform];
-  return <Icon className={className} aria-hidden />;
+  return <Icon className={className} />;
 }
 
 export function PlatformBadge({ platform }: { platform: Platform }) {
   const label = usePlatformLabel();
   return (
-    <span className="inline-flex items-center gap-1 rounded border border-line bg-surface/95 px-1.5 py-0.5 text-[11px] font-medium text-ink">
+    <span className="inline-flex items-center gap-1 rounded-lg bg-surface/95 px-2 py-0.5 text-[11px] font-medium text-ink">
       <PlatformIcon platform={platform} className="h-3 w-3" />
       {label(platform)}
     </span>
@@ -174,11 +176,11 @@ export function SocialLinks({ links, size = 'md' }: { links: ExtLink[]; size?: '
         return (
           <li key={l.platform + l.url}>
             {isRealUrl(l.url) ? (
-              <a href={l.url} target="_blank" rel="noopener noreferrer" aria-label={name} title={name} className={`${box} inline-flex items-center justify-center rounded-full border border-line bg-surface text-ink transition hover:border-ink`}>
+              <a href={l.url} target="_blank" rel="noopener noreferrer" aria-label={name} title={name} className={`${box} inline-flex items-center justify-center rounded-xl bg-surface text-ink transition hover:bg-accent`}>
                 {content}
               </a>
             ) : (
-              <span title={`${name} — ${t('linkNeeded')}`} aria-label={`${name} (${t('linkNeeded')})`} className={`${box} inline-flex cursor-not-allowed items-center justify-center rounded-full border border-dashed border-line bg-surface text-subtle`}>
+              <span title={`${name} — ${t('linkNeeded')}`} aria-label={`${name} (${t('linkNeeded')})`} className={`${box} inline-flex cursor-not-allowed items-center justify-center rounded-xl border border-dashed border-line bg-surface text-subtle`}>
                 {content}
               </span>
             )}
@@ -264,8 +266,7 @@ export function CTABlock({ eyebrow, title, text, children }: { eyebrow?: string;
   return (
     <section className="section-wf">
       <div className="container-wf">
-        <div className="relative flex flex-col items-start gap-6 overflow-hidden rounded-3xl bg-calm p-8 sm:p-12 lg:flex-row lg:items-center lg:justify-between">
-          <Rings className="pointer-events-none absolute -bottom-40 -end-24 h-[380px] w-[380px] text-white/60" />
+        <div className="relative flex flex-col items-start gap-6 overflow-hidden rounded-3xl bg-accent p-8 sm:p-12 lg:flex-row lg:items-center lg:justify-between">
           <div className="relative max-w-xl">
             {eyebrow && <p className="eyebrow mb-3">{eyebrow}</p>}
             <h2 className="text-3xl tracking-tight sm:text-4xl">{title}</h2>

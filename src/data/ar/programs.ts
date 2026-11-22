@@ -17,7 +17,7 @@ export const programs: Program[] = [
     role: 'مقدّمة البرنامج وصانعة المحتوى',
     period: '[سنة البداية] – حتى الآن',
     episodesCount: '[00]',
-    cover: { src: 'assets/images/media/raay-tany-garrab-te3eesh.jpg', alt: '«رأي تاني» مع نيفين أبو الغيط', ratio: '16/9', position: '50% 14%' },
+    cover: { src: 'assets/images/programs/raay-tany-cover.jpg', alt: 'غلاف برنامج «رأي تاني»', ratio: '1/1' },
     galleryIds: ['gal-01', 'gal-02'],
     externalLinks: [{ platform: 'instagram', label: 'شاهد «رأي تاني» على إنستجرام', url: 'https://www.instagram.com/neveenabuelghait/' }],
     featured: true,
@@ -37,7 +37,8 @@ export const programs: Program[] = [
     role: 'مقدّمة البرنامج — الموسم الثالث',
     period: '[سنة الموسم الثالث]',
     episodesCount: '[00]',
-    cover: { src: 'assets/images/programs/andy-fekrah-cover.jpg', alt: 'شعار برنامج «عندي فكرة» مع نيفين أبو الغيط', ratio: '16/9' },
+    cover: { src: 'assets/images/programs/andy-fekrah-3-poster.jpg', alt: 'غلاف برنامج «عندي فكرة 3» — نيفين أبو الغيط على راديو 90s FM', ratio: '16/9' },
+    thumb: { src: 'assets/images/programs/andy-fekrah-cover.jpg', alt: 'غلاف برنامج «عندي فكرة» مع نيفين أبو الغيط', ratio: '16/9' },
     galleryIds: ['gal-13', 'gal-08', 'gal-09'],
     externalLinks: [
       { platform: 'radio', label: 'صفحة البرنامج على 90s FM', url: 'https://90sfm.com/index/program.php?id=63418' },

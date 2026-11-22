@@ -14,7 +14,14 @@ export const profile: Profile = {
   title: 'Content Creator & Program Presenter',
   headline: 'Ideas on awareness, human behavior and communication.',
   intro: 'I share ideas that open new angles for understanding life and people.',
-  heroPortrait: { src: 'assets/images/portraits/nevine-podcast-mic.jpg', alt: 'Neveen Abuelghait at the studio microphone', ratio: '4/5', position: '54% 50%' },
+  affiliations: [
+    { id: 'af-90s', name: '90s FM Academy', caption: 'Radio & broadcast training', logo: 'assets/images/logos/90s-fm.png' },
+    { id: 'af-enbd', name: 'Emirates NBD', logo: 'assets/images/logos/emirates-nbd.png', caption: 'Banking' },
+    { id: 'af-marriott', name: 'Marriott', logo: 'assets/images/logos/marriott.png', caption: 'Guest relations' },
+    { id: 'af-fue', name: 'Future University in Egypt', logo: 'assets/images/logos/fue.png', caption: 'Economics & Political Science' },
+  ],
+  topics: ['Awareness', 'Human Behavior', 'Communication', '«رأي تاني»', 'Conversation'],
+  heroPortrait: { src: 'assets/images/portraits/nevine-headphones.jpg', alt: 'Neveen Abuelghait wearing studio headphones at the microphone', ratio: '4/5', position: '50% 38%' },
 
   // Neveen's approved About text (translated) — paragraphs separated by a blank line
   aboutPreview: [
@@ -34,11 +41,11 @@ export const profile: Profile = {
   audioIntro: {
     title: 'Listen to My Voice',
     // DRAFT COPY
-    description: 'The promo for season 3 of «عندي فكرة» on Radio 90s FM — under a minute of my voice on air. The full «سهرة رمضانية» recording is in the media library.',
+    description: 'The promo for season 3 of «عندي فكرة» on Radio 90s FM — under a minute of my voice on air.',
     src: 'assets/audio/andy-fekrah-promo.mp3',
     duration: '0:52',
     spotifyUrl: 'https://open.spotify.com/show/5flDkBxQZhXljNaKzhdN8O',
-    image: { src: 'assets/images/portraits/nevine-headphones.jpg', alt: 'Neveen Abuelghait wearing studio headphones at the microphone', ratio: '4/5', position: '55% 30%' },
+    image: { src: 'assets/images/portraits/nevine-podcast-mic.jpg', alt: 'Neveen Abuelghait at the studio microphone', ratio: '4/5', position: '54% 50%' },
   },
 
   about: {

@@ -75,7 +75,7 @@ export function AudioPlayer({ src, title, durationLabel }: { src?: string; title
           onClick={toggle}
           disabled={!available}
           aria-label={playing ? t('pause', { title }) : t('play', { title })}
-          className="inline-flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-accent text-ink transition hover:brightness-95 disabled:cursor-not-allowed disabled:bg-line disabled:text-subtle"
+          className="inline-flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-accent text-ink transition hover:brightness-95 disabled:cursor-not-allowed disabled:bg-line disabled:text-subtle"
         >
           {playing ? <Pause className="h-6 w-6" /> : <Play className="ml-0.5 h-6 w-6" />}
         </button>

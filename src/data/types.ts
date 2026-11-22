@@ -42,6 +42,10 @@ export interface Profile {
   title: string;
   headline: string;
   intro: string;
+  /** Short topic labels shown as the hero's pill stack (one is highlighted at a time). */
+  topics?: string[];
+  /** Places she has worked/studied — shown as a logo strip. logo: path under public/, else a typographic wordmark. */
+  affiliations?: { id: string; name: string; caption: string; logo?: string }[];
   heroPortrait: ImageRef;
   aboutPreview: string;
   aboutImage: ImageRef;
@@ -91,6 +95,8 @@ export interface Program {
   period: string;
   episodesCount: string;
   cover: ImageRef;
+  /** Optional different image for program cards (list/home); the detail page uses `cover`. */
+  thumb?: ImageRef;
   /** Gallery item IDs shown on the program page. */
   galleryIds: string[];
   externalLinks: ExternalLink[];

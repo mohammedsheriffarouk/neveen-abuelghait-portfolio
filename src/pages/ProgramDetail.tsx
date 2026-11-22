@@ -2,16 +2,14 @@ import { Link, useParams } from 'react-router-dom';
 import type { ReactNode } from 'react';
 import { ArrowLeft, ArrowRight, Calendar, Disc3, Mic, Radio } from 'lucide-react';
 import { MediaGrid } from '../components/Cards';
-import { ShowEmbed } from '../components/Media';
 import { AudioPlayer } from '../components/AudioPlayer';
-import { GalleryGrid } from '../components/Gallery';
 import { Breadcrumbs, EmptyState, ExternalCTA, ImageBox, SectionHeading, flip } from '../components/ui';
 import { useContent, useLocale } from '../i18n/LocaleContext';
 
 export default function ProgramDetail() {
   const { slug } = useParams();
   const { t } = useLocale();
-  const { programs, episodes, getProgram, getGalleryItems } = useContent();
+  const { programs, episodes, getProgram } = useContent();
   const program = getProgram(slug);
 
   if (!program) {
@@ -35,17 +33,15 @@ export default function ProgramDetail() {
   const remaining = own.filter((e) => !featuredIds.has(e.id));
   const sameFormat = new Set(programs.filter((p) => p.format === program.format && p.id !== program.id).map((p) => p.id));
   const related = [...remaining, ...episodes.filter((e) => e.programId && sameFormat.has(e.programId))].slice(0, 3);
-  const photos = getGalleryItems(program.galleryIds);
-  const spotify = program.externalLinks.find((l) => l.platform === 'spotify');
 
   return (
     <>
-      <header className="border-b border-line bg-surface">
-        <div className="container-wf py-10 sm:py-14">
+      <header className="container-wf pt-6 sm:pt-8">
+        <div className="rounded-3xl bg-surface px-6 py-10 sm:px-10 sm:py-14">
           <Breadcrumbs items={[{ label: t('nav.home'), to: '/' }, { label: t('nav.programs'), to: '/programs' }, { label: program.name }]} />
           <div className="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:items-start">
             <div className="lg:col-span-5">
-              <ImageBox image={program.cover} className="mx-auto max-w-md rounded-xl border border-line lg:max-w-none" />
+              <ImageBox image={program.cover} className="mx-auto max-w-md rounded-2xl lg:max-w-none" />
             </div>
             <div className="lg:col-span-7">
               <div className="flex flex-wrap gap-1.5">
@@ -78,7 +74,6 @@ export default function ProgramDetail() {
                   </div>
                 </div>
               )}
-              {spotify && <div className="mt-6"><ShowEmbed url={spotify.url} title={program.name} hideLink /></div>}
             </div>
           </div>
         </div>
@@ -86,16 +81,8 @@ export default function ProgramDetail() {
 
       <section className="section-wf">
         <div className="container-wf">
-          <SectionHeading eyebrow={t('program.featured')} title={t('program.startHere')}
-            action={<Link to={`/media?program=${program.id}`} className="btn-ghost">{t('program.allEpisodes')} <ArrowRight className={`h-4 w-4 ${flip}`} /></Link>} />
+          <SectionHeading eyebrow={t('program.featured')} title={t('program.startHere')} />
           {featured.length ? <MediaGrid items={featured} /> : <EmptyState title={t('program.noEpisodes')} />}
-        </div>
-      </section>
-
-      <section className="section-wf border-y border-line bg-surface">
-        <div className="container-wf">
-          <SectionHeading eyebrow={t('program.gallery')} title={t('program.onSet')} />
-          {photos.length ? <GalleryGrid items={photos} columns="columns-2 md:columns-3" /> : <EmptyState title={t('program.noPhotos')} />}
         </div>
       </section>
 
@@ -108,7 +95,7 @@ export default function ProgramDetail() {
         </section>
       )}
 
-      <nav aria-label={t('program.nav')} className="border-t border-line bg-surface">
+      <nav aria-label={t('program.nav')} className="pb-10">
         <div className="container-wf grid grid-cols-1 gap-3 py-8 sm:grid-cols-3 sm:items-center">
           {programs.length > 1 ? (
             <Link to={`/programs/${prev.slug}`} className="btn-ghost justify-start"><ArrowLeft className={`h-4 w-4 ${flip}`} /> <span className="truncate">{prev.name}</span></Link>
@@ -125,7 +112,7 @@ export default function ProgramDetail() {
 
 function Fact({ icon, label, value }: { icon: ReactNode; label: string; value: string }) {
   return (
-    <div className="flex gap-3 rounded-md border border-line p-3">
+    <div className="flex gap-3 rounded-2xl bg-canvas p-3">
       <span className="mt-0.5 text-subtle">{icon}</span>
       <div>
         <dt className="wf-label">{label}</dt>

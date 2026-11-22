@@ -4,7 +4,6 @@ import type { UIKey } from '../i18n/ui';
 export const mainNav: { to: string; key: UIKey }[] = [
   { to: '/', key: 'nav.home' },
   { to: '/programs', key: 'nav.programs' },
-  { to: '/media', key: 'nav.media' },
 ];
 
 /** Secondary links (footer, mobile menu, Experience page). */

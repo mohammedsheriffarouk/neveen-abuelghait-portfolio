@@ -6,7 +6,7 @@ import { useContent, useLocale } from '../i18n/LocaleContext';
 import { ExternalCTA, ImageBox, PlatformBadge, Rings, flip, usePlatformLabel } from './ui';
 import { GalleryGrid } from './Gallery';
 import { Modal } from './Modal';
-import { MediaViewer, ShowEmbed } from './Media';
+import { MediaViewer } from './Media';
 
 /* ------------------------------------------------------------------ */
 /* Program card → opens program detail page                            */
@@ -16,7 +16,7 @@ export function ProgramCard({ program }: { program: Program }) {
   return (
     <article className="card-wf card-lift group flex h-full flex-col overflow-hidden">
       <Link to={`/programs/${program.slug}`} className="block" tabIndex={-1} aria-hidden>
-        <ImageBox image={program.cover} className="transition duration-500 group-hover:scale-[1.02]" />
+        <ImageBox image={{ ...(program.thumb ?? program.cover), ratio: '16/9' }} className="transition duration-500 group-hover:scale-[1.02]" />
       </Link>
       <div className="flex flex-1 flex-col gap-3 p-5">
         <div className="flex flex-wrap gap-1.5">
@@ -48,7 +48,7 @@ function ProgramMeta({ program, className = '' }: { program: Program; className?
   ].filter((r) => r.value);
   if (!rows.length) return null;
   return (
-    <dl className={`grid grid-cols-2 gap-2 border-t border-line pt-3 text-xs ${className}`}>
+    <dl className={`grid grid-cols-2 gap-2 rounded-2xl bg-canvas p-3 text-xs ${className}`}>
       {rows.map((r) => <div key={r.label}><dt className="wf-label">{r.label}</dt><dd className="mt-0.5">{r.value}</dd></div>)}
     </dl>
   );
@@ -57,11 +57,10 @@ function ProgramMeta({ program, className = '' }: { program: Program; className?
 /** Wide layout used when there are only one or two programs. */
 export function FeaturedProgram({ program }: { program: Program }) {
   const { t } = useLocale();
-  const spotify = program.externalLinks.find((l) => l.platform === 'spotify');
   return (
     <article className="card-wf grid grid-cols-1 overflow-hidden md:grid-cols-12">
       <Link to={`/programs/${program.slug}`} className="block self-start p-6 pb-0 sm:p-8 sm:pb-0 md:col-span-5 md:pb-8 md:pe-0" tabIndex={-1} aria-hidden>
-        <ImageBox image={program.cover} className="rounded-lg border border-line" />
+        <ImageBox image={{ ...(program.thumb ?? program.cover), ratio: '16/9' }} className="rounded-2xl" />
       </Link>
       <div className="flex flex-col gap-4 p-6 sm:p-8 md:col-span-7">
         <div className="flex flex-wrap gap-1.5">
@@ -76,7 +75,6 @@ export function FeaturedProgram({ program }: { program: Program }) {
         </div>
         <p className="text-sm leading-relaxed text-subtle sm:text-base">{program.shortDescription}</p>
         <ProgramMeta program={program} />
-        {spotify && <ShowEmbed url={spotify.url} title={program.name} />}
         <Link to={`/programs/${program.slug}`} className="btn-secondary self-start">
           {t('explore')} <ArrowRight className={`h-4 w-4 ${flip}`} aria-hidden />
         </Link>
@@ -100,9 +98,9 @@ export function MediaCard({ item, onOpen }: { item: MediaItem; onOpen: (m: Media
         <ImageBox image={{ ...item.thumbnail, ratio: '1/1' }} className="transition duration-500 group-hover:scale-[1.02]" />
         <span className="absolute start-2 top-2 flex flex-wrap gap-1.5">
           <PlatformBadge platform={item.platform} />
-          {item.topViewed && <span className="inline-flex items-center rounded bg-accent px-1.5 py-0.5 text-[11px] font-semibold text-ink">{t('mostViewed')}</span>}
+          {item.topViewed && <span className="inline-flex items-center rounded-lg bg-accent px-2 py-0.5 text-[11px] font-semibold text-ink">{t('mostViewed')}</span>}
         </span>
-        <span className="absolute bottom-2 end-2 inline-flex h-11 w-11 items-center justify-center rounded-full bg-accent text-ink shadow transition group-hover:scale-105">
+        <span className="absolute bottom-2 end-2 inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-accent text-ink shadow transition group-hover:scale-105">
           {item.kind === 'video' ? <Play className="ml-0.5 h-5 w-5" /> : <Headphones className="h-5 w-5" />}
         </span>
         {item.duration && <span dir="ltr" className="absolute bottom-2 start-2 rounded bg-surface/95 px-1.5 py-0.5 font-mono text-[11px]">{item.duration}</span>}
@@ -150,7 +148,7 @@ export function TimelineItem({ exp, defaultOpen = false, compact = false }: { ex
 
   return (
     <li className="relative ps-8 sm:ps-10">
-      <span className="absolute start-[7px] top-2 h-3 w-3 rounded-full border-2 border-accent bg-surface sm:start-[11px]" aria-hidden />
+      <span className="absolute start-[7px] top-2 h-3 w-3 rounded-full bg-accent sm:start-[11px]" aria-hidden />
       <div className="card-wf p-5">
         <div className="flex flex-col gap-1 sm:flex-row sm:items-start sm:justify-between sm:gap-4">
           <div>

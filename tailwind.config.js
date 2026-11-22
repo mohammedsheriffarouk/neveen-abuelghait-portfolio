@@ -16,9 +16,10 @@ export default {
         placeholder: 'rgb(var(--wf-placeholder) / <alpha-value>)',
       },
       fontFamily: {
-        // Body: IBM Plex Sans Arabic (Arabic + Latin). Display: Reem Kufi. Loaded in index.html.
+        // Body: IBM Plex Sans Arabic. Display (English): Outfit. Arabic everywhere: Amiri (see index.css).
         sans: ['"IBM Plex Sans Arabic"', 'system-ui', 'Segoe UI', 'Tahoma', 'sans-serif'],
-        display: ['"Reem Kufi"', '"IBM Plex Sans Arabic"', 'system-ui', 'sans-serif'],
+        serif: ['"Cormorant Garamond"', 'Georgia', 'serif'],
+        display: ['Outfit', '"IBM Plex Sans Arabic"', 'system-ui', 'sans-serif'],
       },
       maxWidth: { content: '76rem' },
     },

@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react';
 import { Link, NavLink, Outlet, useLocation } from 'react-router-dom';
-import { ArrowUp, Camera, Languages, Mail, MapPin, Menu, X } from 'lucide-react';
+import { ArrowUp, Languages, Mail, MapPin, Menu, X } from 'lucide-react';
+import { InstagramIcon } from '../components/BrandIcons';
 import { mainNav, secondaryNav } from '../data/navigation';
 import { socialLinks } from '../data/socialLinks';
 import { isPlaceholder } from '../data/placeholder';
-import { Rings, SocialLinks } from '../components/ui';
+import { SocialLinks } from '../components/ui';
 import { useContent, useLocale } from '../i18n/LocaleContext';
 
 function Logo({ onDark = false }: { onDark?: boolean }) {
@@ -14,7 +15,7 @@ function Logo({ onDark = false }: { onDark?: boolean }) {
   return (
     <Link to="/" className="group inline-flex items-center gap-2" aria-label={t('logoHome', { name: profile.shortName })}>
       <span className={`font-display text-lg font-semibold sm:text-xl ${onDark ? 'text-canvas' : 'text-ink'}`}>{profile.shortName}</span>
-      <span className="h-2 w-2 rounded-full bg-accent transition group-hover:scale-125" aria-hidden />
+      <span className="h-2.5 w-2.5 rounded-full bg-accent transition group-hover:scale-125" aria-hidden />
     </Link>
   );
 }
@@ -52,11 +53,11 @@ function Header() {
   }, [open]);
 
   const linkCls = ({ isActive }: { isActive: boolean }) =>
-    `relative whitespace-nowrap rounded px-2.5 py-2 text-sm transition ${isActive ? 'font-semibold text-ink after:absolute after:inset-x-2.5 after:-bottom-[13px] after:h-0.5 after:bg-accent' : 'text-subtle hover:text-ink'}`;
+    `whitespace-nowrap rounded-xl px-4 py-2 text-sm transition ${isActive ? 'bg-surface font-semibold text-ink' : 'text-subtle hover:bg-surface/60 hover:text-ink'}`;
 
   return (
     // No backdrop-filter on the header: it would make the fixed mobile menu relative to the 64px header.
-    <header className="sticky top-0 z-50 isolate border-b border-line bg-canvas">
+    <header className="sticky top-0 z-50 isolate bg-canvas">
       <a
         href="#main"
         onClick={(e) => {
@@ -119,39 +120,37 @@ function Footer() {
   const { profile } = useContent();
   const { t } = useLocale();
   const c = profile.contact;
+  const instagram = socialLinks.find((l) => l.platform === 'instagram')?.url;
   return (
-    <footer className="relative overflow-hidden bg-ink text-canvas">
-      <Rings className="pointer-events-none absolute -bottom-64 -end-40 h-[640px] w-[640px] text-white/[0.05]" />
-      <div className="container-wf relative grid grid-cols-1 gap-12 py-16 md:grid-cols-12">
+    <footer className="container-wf pb-6">
+      <div className="grid grid-cols-1 gap-10 rounded-3xl bg-surface p-8 sm:p-12 md:grid-cols-12">
         <div className="md:col-span-5">
-          <Logo onDark />
-          <p className="mt-4 font-display text-xl text-canvas/90">{profile.headline}</p>
-          <p className="mt-2 max-w-sm text-sm leading-relaxed text-white/60">{profile.title}</p>
-          <div className="mt-6"><SocialLinks links={socialLinks} size="sm" /></div>
+          <Logo />
+          <p className="mt-4 font-display text-xl">{profile.headline}</p>
+          <p className="mt-2 max-w-sm text-sm text-subtle">{profile.title}</p>
+          <div className="mt-6 [&_a]:bg-canvas"><SocialLinks links={socialLinks} size="sm" /></div>
         </div>
         <nav aria-label={t('nav.footer')} className="md:col-span-3">
-          <p className="mb-4 text-sm font-medium text-white/50">{t('navigate')}</p>
+          <p className="mb-4 text-sm font-medium text-subtle">{t('navigate')}</p>
           <ul className="grid grid-cols-2 gap-x-4 gap-y-2.5 text-sm md:grid-cols-1">
             {[...mainNav, ...secondaryNav].map((n) => (
-              <li key={n.to}><Link to={n.to} className="text-white/75 transition hover:text-accent">{t(n.key)}</Link></li>
+              <li key={n.to}><Link to={n.to} className="hover:underline">{t(n.key)}</Link></li>
             ))}
           </ul>
         </nav>
         <div className="md:col-span-4">
-          <p className="mb-4 text-sm font-medium text-white/50">{t('contact')}</p>
-          <ul className="space-y-2.5 text-sm text-white/75">
-            <li className="flex items-center gap-2"><Mail className="h-4 w-4 text-accent" />{isPlaceholder(c.email) ? <span>{c.email}</span> : <a href={`mailto:${c.email}`} dir="ltr" className="break-all hover:text-accent">{c.email}</a>}</li>
-            <li className="flex items-center gap-2"><Camera className="h-4 w-4 text-accent" /><a href={socialLinks.find((l) => l.platform === 'instagram')?.url} target="_blank" rel="noopener noreferrer" dir="ltr" className="hover:text-accent">@neveenabuelghait</a></li>
-            <li className="flex items-center gap-2"><MapPin className="h-4 w-4 text-accent" />{c.location}</li>
+          <p className="mb-4 text-sm font-medium text-subtle">{t('contact')}</p>
+          <ul className="space-y-2.5 text-sm">
+            <li className="flex items-center gap-2"><Mail className="h-4 w-4 text-subtle" />{isPlaceholder(c.email) ? <span>{c.email}</span> : <a href={`mailto:${c.email}`} dir="ltr" className="break-all hover:underline">{c.email}</a>}</li>
+            <li className="flex items-center gap-2"><InstagramIcon className="h-4 w-4 text-subtle" /><a href={instagram} target="_blank" rel="noopener noreferrer" dir="ltr" className="hover:underline">@neveenabuelghait</a></li>
+            <li className="flex items-center gap-2"><MapPin className="h-4 w-4 text-subtle" />{c.location}</li>
           </ul>
-          <Link to="/contact" className="btn-secondary btn-on-dark mt-6">{t('getInTouch')}</Link>
+          <Link to="/contact" className="btn-primary mt-6">{t('getInTouch')}</Link>
         </div>
       </div>
-      <div className="relative border-t border-white/10">
-        <div className="container-wf flex flex-col gap-2 py-6 text-xs text-white/50 sm:flex-row sm:justify-between">
-          <p>© {new Date().getFullYear()} {profile.name}. {t('rights')}</p>
-          <p>{t('prototype')}</p>
-        </div>
+      <div className="flex flex-col gap-2 px-2 pt-5 text-xs text-subtle sm:flex-row sm:justify-between">
+        <p>© {new Date().getFullYear()} {profile.name}. {t('rights')}</p>
+        <p>{t('prototype')}</p>
       </div>
     </footer>
   );
@@ -171,7 +170,7 @@ function BackToTop() {
       type="button"
       onClick={() => window.scrollTo({ top: 0, behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' })}
       aria-label={t('backToTop')}
-      className={`fixed bottom-5 end-5 z-40 inline-flex h-12 w-12 items-center justify-center rounded-full bg-accent text-ink shadow-lg transition ${show ? 'translate-y-0 opacity-100' : 'pointer-events-none translate-y-4 opacity-0'}`}
+      className={`fixed bottom-5 end-5 z-40 inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-ink text-white shadow-lg transition ${show ? 'translate-y-0 opacity-100' : 'pointer-events-none translate-y-4 opacity-0'}`}
     >
       <ArrowUp className="h-5 w-5" />
     </button>

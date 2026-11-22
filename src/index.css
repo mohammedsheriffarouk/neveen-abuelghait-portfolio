@@ -3,28 +3,28 @@
 @tailwind utilities;
 
 /* ---------------------------------------------------------------
-   DESIGN TOKENS — "On Air"
-   Warm off-white page, near-black ink, coral as the single sharp accent,
-   light blue for calm panels. Values are RGB channels so Tailwind
-   opacity modifiers work (bg-accent/40).
+   DESIGN TOKENS — "Soft Lavender"
+   Light grey page, white rounded surfaces, one lavender accent, black type.
+   Values are RGB channels so Tailwind opacity modifiers work (bg-accent/40).
 ---------------------------------------------------------------- */
 :root {
-  --wf-canvas: 251 247 246;      /* #FBF7F6 page */
-  --wf-surface: 255 255 255;     /* cards */
-  --wf-muted: 238 245 252;       /* faint blue tint — hovers */
-  --wf-line: 233 226 222;        /* warm hairline */
-  --wf-ink: 20 18 17;            /* near-black */
-  --wf-subtle: 92 86 83;         /* secondary text */
-  --wf-accent: 255 150 100;      /* #FF9664 coral */
-  --wf-calm: 196 222 245;        /* #C4DEF5 light blue */
-  --wf-placeholder: 240 235 232; /* image placeholders */
+  --wf-canvas: 242 242 242;      /* #F2F2F2 page */
+  --wf-surface: 255 255 255;     /* #FFFFFF cards, pills */
+  --wf-muted: 236 235 255;       /* faint lavender — hovers */
+  --wf-line: 228 228 228;        /* hairline */
+  --wf-ink: 17 17 17;            /* near-black */
+  --wf-subtle: 108 108 112;      /* secondary text */
+  --wf-accent: 191 189 254;      /* #BFBDFE lavender — the single accent */
+  --wf-calm: 228 226 255;        /* light lavender panels */
+  --wf-placeholder: 233 233 233; /* image placeholders */
 }
 
 html { scroll-behavior: smooth; }
 body { @apply bg-canvas font-sans text-ink antialiased; overflow-x: hidden; }
 
-/* English: Reem Kufi (display) + IBM Plex Sans Arabic (text). */
-h1, h2 { @apply font-display; font-weight: 600; text-wrap: balance; }
+/* English: Outfit (display, geometric) + IBM Plex Sans Arabic (text). */
+h1, h2 { @apply font-serif; font-weight: 600; text-wrap: balance; letter-spacing: -0.005em; }
+h1 { letter-spacing: -0.015em; }
 
 /* Arabic (primary): Amiri — classic Naskh for every Arabic word, headings and text.
    Amiri sets smaller than a sans at the same size, so Arabic gets a slightly larger
@@ -46,30 +46,30 @@ html[lang='ar'] .font-mono { font-family: ui-monospace, SFMono-Regular, Menlo, m
 [dir='rtl'] *, [lang='ar'] * { letter-spacing: 0 !important; }
 [dir='rtl'] .tag { text-transform: none; }
 
-::selection { background: rgb(var(--wf-accent) / 0.35); }
+::selection { background: rgb(var(--wf-accent) / 0.6); }
 
 @layer components {
   .container-wf { @apply mx-auto w-full max-w-content px-5 sm:px-6 lg:px-8; }
   .section-wf { @apply py-16 sm:py-24; }
-  .card-wf { @apply rounded-2xl border border-line bg-surface; }
-  .card-lift { @apply transition duration-300 hover:-translate-y-1 hover:border-ink/15 hover:shadow-[0_18px_40px_-22px_rgb(20_18_17/0.35)]; }
+  .card-wf { @apply rounded-3xl bg-surface; }
+  .card-lift { @apply transition duration-300 hover:-translate-y-1 hover:shadow-[0_24px_48px_-28px_rgb(17_17_17/0.28)]; }
 
   .btn { @apply inline-flex min-h-[46px] items-center justify-center gap-2 rounded-full px-6 text-sm font-semibold transition duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-ink focus-visible:ring-offset-2 focus-visible:ring-offset-canvas disabled:opacity-50; }
-  .btn-primary { @apply btn bg-accent text-ink shadow-[0_10px_24px_-12px_rgb(255_150_100/0.9)] hover:-translate-y-px hover:brightness-[0.97]; }
-  .btn-secondary { @apply btn border border-ink/80 bg-transparent text-ink hover:bg-ink hover:text-canvas; }
+  .btn-primary { @apply btn bg-ink text-white hover:-translate-y-px hover:bg-ink/85; }
+  .btn-secondary { @apply btn bg-surface text-ink hover:bg-accent; }
   .btn-ghost { @apply btn px-3 font-medium text-subtle hover:bg-muted hover:text-ink; }
-  .btn-on-dark { @apply border-white/60 text-white hover:bg-white hover:text-ink; }
+  .btn-on-dark { @apply bg-surface text-ink hover:bg-accent; }
 
-  .chip { @apply inline-flex min-h-[38px] items-center rounded-full border border-line bg-surface px-4 text-xs font-medium text-subtle transition hover:border-ink/40 hover:text-ink; }
-  .chip-active { @apply border-ink bg-ink text-canvas hover:border-ink hover:text-canvas; }
-  .tag { @apply inline-flex items-center rounded-full bg-calm/50 px-2.5 py-0.5 text-[11px] font-medium text-ink/80; }
-  .input-wf { @apply min-h-[46px] w-full rounded-xl border border-line bg-surface px-3.5 text-sm placeholder:text-subtle/70 focus:border-ink focus:outline-none focus:ring-1 focus:ring-ink; }
+  .chip { @apply inline-flex min-h-[40px] items-center rounded-xl bg-surface px-4 text-sm font-medium text-subtle transition hover:bg-muted hover:text-ink; }
+  .chip-active { @apply bg-accent text-ink hover:bg-accent; }
+  .tag { @apply inline-flex items-center rounded-lg bg-calm px-2.5 py-0.5 text-[11px] font-medium text-ink/80; }
+  .input-wf { @apply min-h-[48px] w-full rounded-xl border border-transparent bg-canvas px-3.5 text-sm placeholder:text-subtle/70 focus:border-ink focus:outline-none focus:ring-1 focus:ring-ink; }
 
   /* Small labels: plain, sentence case — no monospace, no tracking. */
   .wf-label { @apply text-xs font-medium text-subtle; }
   /* Section eyebrow: a small coral "on-air" dot before the text. */
   .eyebrow { @apply inline-flex items-center gap-2 text-sm font-medium text-subtle; }
-  .eyebrow::before { content: ''; @apply h-2 w-2 shrink-0 rounded-full bg-accent; }
+  .eyebrow::before { content: ''; @apply h-2.5 w-2.5 shrink-0 rounded-full bg-accent; }
 
   .needed { @apply rounded border border-dashed border-amber-400/70 bg-amber-50 px-1.5 text-[0.85em] text-amber-800; }
 }
@@ -77,7 +77,7 @@ html[lang='ar'] .font-mono { font-family: ui-monospace, SFMono-Regular, Menlo, m
 /* Motion — one orchestrated entrance + an on-air pulse. */
 @keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
 .rise { animation: rise 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
-@keyframes pulse-dot { 0% { box-shadow: 0 0 0 0 rgb(255 150 100 / 0.7); } 70% { box-shadow: 0 0 0 10px rgb(255 150 100 / 0); } 100% { box-shadow: 0 0 0 0 rgb(255 150 100 / 0); } }
+@keyframes pulse-dot { 0% { box-shadow: 0 0 0 0 rgb(191 189 254 / 0.9); } 70% { box-shadow: 0 0 0 10px rgb(191 189 254 / 0); } 100% { box-shadow: 0 0 0 0 rgb(191 189 254 / 0); } }
 .on-air-dot { animation: pulse-dot 2s infinite; }
 @keyframes wf-wave { 0%,100% { transform: scaleY(.35); } 50% { transform: scaleY(1); } }
 .wf-wave-bar { transform-origin: center; animation: wf-wave 1.4s ease-in-out infinite; }

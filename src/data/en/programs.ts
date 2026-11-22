@@ -21,7 +21,7 @@ export const programs: Program[] = [
     role: 'Host & content creator',
     period: '[START YEAR] – Present',
     episodesCount: '[00]',
-    cover: { src: 'assets/images/media/raay-tany-garrab-te3eesh.jpg', alt: '«رأي تاني» with Neveen Abuelghait', ratio: '16/9', position: '50% 14%' },
+    cover: { src: 'assets/images/programs/raay-tany-cover.jpg', alt: '«رأي تاني» program cover', ratio: '1/1' },
     galleryIds: ['gal-01', 'gal-02'],
     externalLinks: [{ platform: 'instagram', label: 'Watch «رأي تاني» on Instagram', url: 'https://www.instagram.com/neveenabuelghait/' }],
     featured: true,
@@ -41,7 +41,8 @@ export const programs: Program[] = [
     role: 'Host — Season 3',
     period: '[SEASON 3 YEAR]',
     episodesCount: '[00]',
-    cover: { src: 'assets/images/programs/andy-fekrah-cover.jpg', alt: '«عندي فكرة» with Neveen Abuelghait — show artwork', ratio: '16/9' },
+    cover: { src: 'assets/images/programs/andy-fekrah-3-poster.jpg', alt: '«عندي فكرة 3» cover — Neveen Abuelghait on Radio 90s FM', ratio: '16/9' },
+    thumb: { src: 'assets/images/programs/andy-fekrah-cover.jpg', alt: '«عندي فكرة» program cover with Neveen Abuelghait', ratio: '16/9' },
     galleryIds: ['gal-13', 'gal-08', 'gal-09'],
     externalLinks: [
       { platform: 'radio', label: 'Program page on 90s FM', url: 'https://90sfm.com/index/program.php?id=63418' },

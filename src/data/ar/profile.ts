@@ -11,7 +11,14 @@ export const profile: Profile = {
   title: 'صانعة محتوى ومقدّمة برامج',
   headline: 'أفكار عن الوعي، والسلوك الإنساني، والتواصل.',
   intro: 'أشاركك أفكارًا تفتح زوايا جديدة لفهم الحياة والإنسان.',
-  heroPortrait: { src: 'assets/images/portraits/nevine-podcast-mic.jpg', alt: 'نيفين أبو الغيط أمام ميكروفون الاستوديو', ratio: '4/5', position: '54% 50%' },
+  affiliations: [
+    { id: 'af-90s', name: '90s FM Academy', caption: 'الراديو والتدريب الإذاعي', logo: 'assets/images/logos/90s-fm.png' },
+    { id: 'af-enbd', name: 'Emirates NBD', logo: 'assets/images/logos/emirates-nbd.png', caption: 'القطاع المصرفي' },
+    { id: 'af-marriott', name: 'Marriott', logo: 'assets/images/logos/marriott.png', caption: 'علاقات الضيوف' },
+    { id: 'af-fue', name: 'Future University in Egypt', logo: 'assets/images/logos/fue.png', caption: 'الاقتصاد والعلوم السياسية' },
+  ],
+  topics: ['الوعي', 'السلوك الإنساني', 'التواصل', '«رأي تاني»', 'الحوار'],
+  heroPortrait: { src: 'assets/images/portraits/nevine-headphones.jpg', alt: 'نيفين أبو الغيط بسمّاعات الاستوديو أمام الميكروفون', ratio: '4/5', position: '50% 38%' },
 
   // النص المعتمد من نيفين — فقرات مفصولة بسطر فارغ
   aboutPreview: [
@@ -30,11 +37,11 @@ export const profile: Profile = {
 
   audioIntro: {
     title: 'استمع إلى صوتي',
-    description: 'برومو الموسم الثالث من «عندي فكرة» على راديو 90s FM — أقل من دقيقة بصوتي على الهواء. وفي مكتبة الوسائط تجد تسجيل «سهرة رمضانية» كاملًا.',
+    description: 'برومو الموسم الثالث من «عندي فكرة» على راديو 90s FM — أقل من دقيقة بصوتي على الهواء.',
     src: 'assets/audio/andy-fekrah-promo.mp3',
     duration: '0:52',
     spotifyUrl: 'https://open.spotify.com/show/5flDkBxQZhXljNaKzhdN8O',
-    image: { src: 'assets/images/portraits/nevine-headphones.jpg', alt: 'نيفين أبو الغيط بسمّاعات الاستوديو أمام الميكروفون', ratio: '4/5', position: '55% 30%' },
+    image: { src: 'assets/images/portraits/nevine-podcast-mic.jpg', alt: 'نيفين أبو الغيط أمام ميكروفون الاستوديو', ratio: '4/5', position: '54% 50%' },
   },
 
   about: {
