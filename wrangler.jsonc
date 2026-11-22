@@ -1,0 +1,7 @@
+{
+  // Optional CLI deploy (Cloudflare Workers static assets):
+  //   npm run build && npx wrangler deploy
+  "name": "neveen-abuelghait",
+  "compatibility_date": "2026-11-22",
+  "assets": { "directory": "./dist" }
+}

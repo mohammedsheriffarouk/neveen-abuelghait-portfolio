@@ -1,0 +1,89 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ---------------------------------------------------------------
+   DESIGN TOKENS — "On Air"
+   Warm off-white page, near-black ink, coral as the single sharp accent,
+   light blue for calm panels. Values are RGB channels so Tailwind
+   opacity modifiers work (bg-accent/40).
+---------------------------------------------------------------- */
+:root {
+  --wf-canvas: 251 247 246;      /* #FBF7F6 page */
+  --wf-surface: 255 255 255;     /* cards */
+  --wf-muted: 238 245 252;       /* faint blue tint — hovers */
+  --wf-line: 233 226 222;        /* warm hairline */
+  --wf-ink: 20 18 17;            /* near-black */
+  --wf-subtle: 92 86 83;         /* secondary text */
+  --wf-accent: 255 150 100;      /* #FF9664 coral */
+  --wf-calm: 196 222 245;        /* #C4DEF5 light blue */
+  --wf-placeholder: 240 235 232; /* image placeholders */
+}
+
+html { scroll-behavior: smooth; }
+body { @apply bg-canvas font-sans text-ink antialiased; overflow-x: hidden; }
+
+/* English: Reem Kufi (display) + IBM Plex Sans Arabic (text). */
+h1, h2 { @apply font-display; font-weight: 600; text-wrap: balance; }
+
+/* Arabic (primary): Amiri — classic Naskh for every Arabic word, headings and text.
+   Amiri sets smaller than a sans at the same size, so Arabic gets a slightly larger
+   root size and more generous leading. Amiri ships 400/700 only, so headings use 700. */
+html[lang='ar'] { font-size: 106.25%; }
+html[lang='ar'] body,
+html[lang='ar'] .font-sans,
+html[lang='ar'] .font-display,
+html[lang='ar'] input, html[lang='ar'] select, html[lang='ar'] textarea, html[lang='ar'] button {
+  font-family: 'Amiri', 'IBM Plex Sans Arabic', serif;
+}
+html[lang='ar'] body { line-height: 1.95; }
+html[lang='ar'] h1, html[lang='ar'] h2, html[lang='ar'] h3, html[lang='ar'] .font-display { font-weight: 700; }
+html[lang='ar'] h1, html[lang='ar'] h2 { line-height: 1.45; }
+/* Timestamps and numbers stay in the sans so they align cleanly. */
+html[lang='ar'] .font-mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+
+/* Arabic: letter-spacing breaks letter joining, and Arabic has no capitals. */
+[dir='rtl'] *, [lang='ar'] * { letter-spacing: 0 !important; }
+[dir='rtl'] .tag { text-transform: none; }
+
+::selection { background: rgb(var(--wf-accent) / 0.35); }
+
+@layer components {
+  .container-wf { @apply mx-auto w-full max-w-content px-5 sm:px-6 lg:px-8; }
+  .section-wf { @apply py-16 sm:py-24; }
+  .card-wf { @apply rounded-2xl border border-line bg-surface; }
+  .card-lift { @apply transition duration-300 hover:-translate-y-1 hover:border-ink/15 hover:shadow-[0_18px_40px_-22px_rgb(20_18_17/0.35)]; }
+
+  .btn { @apply inline-flex min-h-[46px] items-center justify-center gap-2 rounded-full px-6 text-sm font-semibold transition duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-ink focus-visible:ring-offset-2 focus-visible:ring-offset-canvas disabled:opacity-50; }
+  .btn-primary { @apply btn bg-accent text-ink shadow-[0_10px_24px_-12px_rgb(255_150_100/0.9)] hover:-translate-y-px hover:brightness-[0.97]; }
+  .btn-secondary { @apply btn border border-ink/80 bg-transparent text-ink hover:bg-ink hover:text-canvas; }
+  .btn-ghost { @apply btn px-3 font-medium text-subtle hover:bg-muted hover:text-ink; }
+  .btn-on-dark { @apply border-white/60 text-white hover:bg-white hover:text-ink; }
+
+  .chip { @apply inline-flex min-h-[38px] items-center rounded-full border border-line bg-surface px-4 text-xs font-medium text-subtle transition hover:border-ink/40 hover:text-ink; }
+  .chip-active { @apply border-ink bg-ink text-canvas hover:border-ink hover:text-canvas; }
+  .tag { @apply inline-flex items-center rounded-full bg-calm/50 px-2.5 py-0.5 text-[11px] font-medium text-ink/80; }
+  .input-wf { @apply min-h-[46px] w-full rounded-xl border border-line bg-surface px-3.5 text-sm placeholder:text-subtle/70 focus:border-ink focus:outline-none focus:ring-1 focus:ring-ink; }
+
+  /* Small labels: plain, sentence case — no monospace, no tracking. */
+  .wf-label { @apply text-xs font-medium text-subtle; }
+  /* Section eyebrow: a small coral "on-air" dot before the text. */
+  .eyebrow { @apply inline-flex items-center gap-2 text-sm font-medium text-subtle; }
+  .eyebrow::before { content: ''; @apply h-2 w-2 shrink-0 rounded-full bg-accent; }
+
+  .needed { @apply rounded border border-dashed border-amber-400/70 bg-amber-50 px-1.5 text-[0.85em] text-amber-800; }
+}
+
+/* Motion — one orchestrated entrance + an on-air pulse. */
+@keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+.rise { animation: rise 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+@keyframes pulse-dot { 0% { box-shadow: 0 0 0 0 rgb(255 150 100 / 0.7); } 70% { box-shadow: 0 0 0 10px rgb(255 150 100 / 0); } 100% { box-shadow: 0 0 0 0 rgb(255 150 100 / 0); } }
+.on-air-dot { animation: pulse-dot 2s infinite; }
+@keyframes wf-wave { 0%,100% { transform: scaleY(.35); } 50% { transform: scaleY(1); } }
+.wf-wave-bar { transform-origin: center; animation: wf-wave 1.4s ease-in-out infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  .wf-wave-bar, .rise, .on-air-dot { animation: none; }
+  .card-lift:hover, .btn-primary:hover { transform: none; }
+  html { scroll-behavior: auto; }
+}
