@@ -35,8 +35,6 @@ export default function Contact() {
   const [errors, setErrors] = useState<Errors>({});
   const [touched, setTouched] = useState<Partial<Record<keyof Fields, boolean>>>({});
   const [sent, setSent] = useState(false);
-  const [sending, setSending] = useState(false);
-  const [sendError, setSendError] = useState(false);
   const formRef = useRef<HTMLFormElement>(null);
   const c = profile.contact;
 
@@ -57,7 +55,7 @@ export default function Contact() {
     setErrors(validate(fields));
   };
 
-  const submit = async (e: FormEvent) => {
+  const submit = (e: FormEvent) => {
     e.preventDefault();
     const errs = validate(fields);
     setErrors(errs);
@@ -67,44 +65,14 @@ export default function Contact() {
       formRef.current?.querySelector<HTMLElement>(`[name="${first}"]`)?.focus();
       return;
     }
+    // No backend needed: open the visitor's email app with a ready-to-send message to Neveen.
+    // (To receive submissions without the visitor's mail app, connect Formspree / Netlify Forms here instead.)
     const typeLabel = fields.type ? t(`type.${fields.type}` as UIKey) : '';
-
-    // Sent directly from the site (no mail app opens for the visitor) via FormSubmit's
-    // mail-relay endpoint — it delivers straight to Neveen's inbox below. One-time setup:
-    // the first submission makes FormSubmit email c.email an "activate this form" link;
-    // once clicked, every submission after that is delivered automatically.
+    const body = `${fields.message}\n\n— ${fields.name}\n${fields.email}${typeLabel ? `\n${t('contact.type')}: ${typeLabel}` : ''}`;
     if (!isPlaceholder(c.email)) {
-      setSending(true);
-      setSendError(false);
-      try {
-        const res = await fetch(`https://formsubmit.co/ajax/${encodeURIComponent(c.email)}`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-          body: JSON.stringify({
-            name: fields.name,
-            email: fields.email,
-            subject: `[${typeLabel}] ${fields.subject}`,
-            type: typeLabel,
-            message: fields.message,
-            _subject: `New website inquiry — ${fields.subject}`,
-            _template: 'table',
-            _captcha: 'false',
-          }),
-        });
-        if (!res.ok) throw new Error('bad status');
-        setSent(true);
-      } catch {
-        // Fallback so nothing gets lost: open the visitor's mail app with the message pre-filled.
-        setSendError(true);
-        const body = `${fields.message}\n\n— ${fields.name}\n${fields.email}${typeLabel ? `\n${t('contact.type')}: ${typeLabel}` : ''}`;
-        window.location.href = `mailto:${c.email}?subject=${encodeURIComponent(`[${typeLabel}] ${fields.subject}`)}&body=${encodeURIComponent(body)}`;
-        setSent(true);
-      } finally {
-        setSending(false);
-      }
-    } else {
-      setSent(true);
+      window.location.href = `mailto:${c.email}?subject=${encodeURIComponent(`[${typeLabel}] ${fields.subject}`)}&body=${encodeURIComponent(body)}`;
     }
+    setSent(true);
   };
 
   const reset = () => {
@@ -169,7 +137,7 @@ export default function Contact() {
                 <div role="status" className="flex flex-col items-center gap-3 py-10 text-center">
                   <CheckCircle2 className="h-12 w-12" />
                   <h2 className="text-2xl font-semibold">{t('contact.thanks', { name: fields.name.split(' ')[0] })}</h2>
-                  <p className="max-w-md text-sm text-subtle">{t(sendError ? 'contact.passedFallback' : 'contact.passed')}</p>
+                  <p className="max-w-md text-sm text-subtle">{t('contact.passed')}</p>
                   <p className="max-w-md text-sm text-subtle">
                     {t('contact.demo')}{' '}
                     <a href={`mailto:${c.email}`} dir="ltr" className="font-medium text-ink underline">{c.email}</a>
@@ -204,7 +172,8 @@ export default function Contact() {
                   <Field label={t('contact.message')} id="message" error={err('message')} hint={t('contact.chars', { n: fields.message.trim().length })}>
                     <textarea id="message" name="message" rows={6} value={fields.message} onChange={set('message')} onBlur={blur('message')} className="input-wf py-2.5" aria-invalid={!!err('message')} aria-describedby={err('message') ? 'message-err' : 'message-hint'} />
                   </Field>
-                  <button type="submit" disabled={sending} className="btn-primary w-full disabled:opacity-60 sm:w-auto"><Send className="h-4 w-4 rtl:-scale-x-100" /> {sending ? t('contact.sending') : t('contact.submit')}</button>
+                  <button type="submit" className="btn-primary w-full sm:w-auto"><Send className="h-4 w-4 rtl:-scale-x-100" /> {t('contact.submit')}</button>
+                  <p className="text-xs text-subtle">{t('contact.demoNote')}</p>
                 </form>
               )}
             </div>
