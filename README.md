@@ -10,7 +10,7 @@ The structure, content model and interactions are final-ready. The visual layer 
 ## Live site (GitHub Pages)
 
 `.github/workflows/deploy.yml` builds and publishes on every push to `main`.
-- **URL:** https://mohammedsheriffarouk.github.io/neveen-abuelghait-portfolio/
+- **URL:** http://mohamed-sherif.com/neveen-abuelghait-portfolio/ (the account’s GitHub Pages custom domain; mohammedsheriffarouk.github.io/neveen-abuelghait-portfolio redirects here)
 - **One-time setup:** in repo **Settings → Pages**, set **Source** to **GitHub Actions**. On a free GitHub plan, Pages also needs the repository to be **public**.
 - The build uses relative paths and hash routing, so it works under the `/neveen-abuelghait-portfolio/` sub-path with no extra configuration.
 
