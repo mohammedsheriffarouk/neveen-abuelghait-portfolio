@@ -104,7 +104,7 @@ export default function Home() {
       <section aria-labelledby="hero-title" className="container-wf pb-16 pt-6 sm:pt-8 lg:pb-24">
         <div className="grid grid-cols-1 items-stretch gap-6 lg:min-h-[calc(100svh-7rem)] lg:grid-cols-2 lg:gap-10">
           {/* Text column (start side) */}
-          <div className="order-2 flex flex-col items-center justify-between gap-10 rounded-3xl py-6 text-center lg:order-1 lg:py-10">
+          <div className="order-2 flex flex-col items-center justify-center gap-10 rounded-3xl py-6 text-center lg:order-1 lg:py-10">
             <div className="rise" style={delay(0)}>
               <h1 id="hero-title" className="text-5xl sm:text-6xl">{profile.name}</h1>
               <div className="mx-auto mt-4 h-px w-12 bg-ink/20" aria-hidden />
