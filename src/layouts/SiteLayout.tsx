@@ -123,15 +123,15 @@ function Footer() {
   const instagram = socialLinks.find((l) => l.platform === 'instagram')?.url;
   return (
     <footer className="container-wf pb-6">
-      <div className="grid grid-cols-1 gap-10 rounded-3xl bg-surface p-8 sm:p-12 md:grid-cols-12">
+      <div className="grid grid-cols-1 gap-10 rounded-3xl bg-ink p-8 text-white sm:p-12 md:grid-cols-12">
         <div className="md:col-span-5">
-          <Logo />
+          <Logo onDark />
           <p className="mt-4 font-display text-xl">{profile.headline}</p>
-          <p className="mt-2 max-w-sm text-sm text-subtle">{profile.title}</p>
+          <p className="mt-2 max-w-sm text-sm text-white/70">{profile.title}</p>
           <div className="mt-6 [&_a]:bg-canvas"><SocialLinks links={socialLinks} size="sm" /></div>
         </div>
         <nav aria-label={t('nav.footer')} className="md:col-span-3">
-          <p className="mb-4 text-sm font-medium text-subtle">{t('navigate')}</p>
+          <p className="mb-4 text-sm font-medium text-white/60">{t('navigate')}</p>
           <ul className="grid grid-cols-2 gap-x-4 gap-y-2.5 text-sm md:grid-cols-1">
             {[...mainNav, ...secondaryNav].map((n) => (
               <li key={n.to}><Link to={n.to} className="hover:underline">{t(n.key)}</Link></li>
@@ -139,13 +139,13 @@ function Footer() {
           </ul>
         </nav>
         <div className="md:col-span-4">
-          <p className="mb-4 text-sm font-medium text-subtle">{t('contact')}</p>
+          <p className="mb-4 text-sm font-medium text-white/60">{t('contact')}</p>
           <ul className="space-y-2.5 text-sm">
-            <li className="flex items-center gap-2"><Mail className="h-4 w-4 text-subtle" />{isPlaceholder(c.email) ? <span>{c.email}</span> : <a href={`mailto:${c.email}`} dir="ltr" className="break-all hover:underline">{c.email}</a>}</li>
-            <li className="flex items-center gap-2"><InstagramIcon className="h-4 w-4 text-subtle" /><a href={instagram} target="_blank" rel="noopener noreferrer" dir="ltr" className="hover:underline">@neveenabuelghait</a></li>
-            <li className="flex items-center gap-2"><MapPin className="h-4 w-4 text-subtle" />{c.location}</li>
+            <li className="flex items-center gap-2"><Mail className="h-4 w-4 text-white/60" />{isPlaceholder(c.email) ? <span>{c.email}</span> : <a href={`mailto:${c.email}`} dir="ltr" className="break-all hover:underline">{c.email}</a>}</li>
+            <li className="flex items-center gap-2"><InstagramIcon className="h-4 w-4 text-white/60" /><a href={instagram} target="_blank" rel="noopener noreferrer" dir="ltr" className="hover:underline">@neveenabuelghait</a></li>
+            <li className="flex items-center gap-2"><MapPin className="h-4 w-4 text-white/60" />{c.location}</li>
           </ul>
-          <Link to="/contact" className="btn-primary mt-6">{t('getInTouch')}</Link>
+          <Link to="/contact" className="btn-secondary mt-6">{t('getInTouch')}</Link>
         </div>
       </div>
       <div className="flex flex-col gap-2 px-2 pt-5 text-xs text-subtle sm:flex-row sm:justify-between">

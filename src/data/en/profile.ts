@@ -11,26 +11,28 @@ export const profile: Profile = {
   // On-air name confirmed: Neveen Abuelghait (matches Spotify & Instagram).
   name: 'Neveen Abuelghait',
   shortName: 'Neveen Abuelghait',
-  title: 'Content Creator & Program Presenter',
-  headline: 'Ideas on awareness, human behavior and communication.',
-  intro: 'I share ideas that open new angles for understanding life and people.',
+  title: 'Broadcaster and talk-show host specializing in human behavior, social topics and communication',
+  headline: 'I create content and conversations that open new angles on people, life and relationships.',
+  intro: 'Through media, dialogue and content creation, I share ideas that help us think more consciously and connect better.',
   affiliations: [
-    { id: 'af-90s', name: '90s FM Academy', caption: 'Radio & broadcast training', logo: 'assets/images/logos/90s-fm.png' },
-    { id: 'af-enbd', name: 'Emirates NBD', logo: 'assets/images/logos/emirates-nbd.png', caption: 'Banking' },
-    { id: 'af-marriott', name: 'Marriott', logo: 'assets/images/logos/marriott.png', caption: 'Guest relations' },
-    { id: 'af-fue', name: 'Future University in Egypt', logo: 'assets/images/logos/fue.png', caption: 'Economics & Political Science' },
+    { id: 'af-fue', name: 'Future University in Egypt', logo: 'assets/images/logos/fue.png', caption: 'Economics & Political Science', group: 'academic' },
+    { id: 'af-marriott', name: 'Marriott', logo: 'assets/images/logos/marriott.png', caption: 'Guest relations', group: 'academic' },
+    { id: 'af-enbd', name: 'Emirates NBD', logo: 'assets/images/logos/emirates-nbd.png', caption: 'Banking experience', group: 'academic' },
+    { id: 'af-90s', name: '90s FM Academy', caption: 'Radio & broadcast training', logo: 'assets/images/logos/90s-fm.png', group: 'training' },
+    { id: 'af-almentor', name: 'al mentor', caption: 'Digital learning platform', logo: 'assets/images/logos/almentor-black.png', group: 'training' },
+    { id: 'af-yanfaa', name: 'Yanfaa', caption: 'Training partner', logo: 'assets/images/logos/yanfaa.png', group: 'training' },
   ],
   topics: ['Awareness', 'Human Behavior', 'Communication', '«رأي تاني»', 'Conversation'],
   heroPortrait: { src: 'assets/images/portraits/nevine-headphones.jpg', alt: 'Neveen Abuelghait wearing studio headphones at the microphone', ratio: '4/5', position: '50% 38%' },
 
   // Neveen's approved About text (translated) — paragraphs separated by a blank line
   aboutPreview: [
-    'Neveen Abuelghait is a broadcaster, program presenter and creator of thought-driven content. She holds a Bachelor’s degree in Economics and Political Science, majoring in Political Science.',
-    'She began her career in relations at Marriott, then moved into banking at Emirates NBD — giving her broad experience in communicating with people and understanding their needs.',
-    'Driven by a passion for media and human connection, she joined a specialized radio presentation training program at 90s FM, followed by hands-on experience recording and presenting radio episodes online.',
-    'Neveen currently hosts her talk show «رأي تاني» (Raay Tany — “A Second Opinion”) on digital platforms: a media project offering different perspectives on life, human behavior, relationships and conscious thinking, through social, cultural and intellectual ideas.',
+    'Neveen Abuelghait is a program presenter and media content creator. She holds a Bachelor’s degree in Economics and Political Science, began her career in guest relations, then moved into banking — gaining experience in communication and understanding people’s needs across different personalities.',
+    'Driven by her passion for media and understanding human behavior, she moved into media training, radio presenting and content creation, producing media projects centered on awareness, relationships, communication and human thinking.',
+    'She currently hosts «رأي تاني» (Raay Tany), which offers different angles on life and people and encourages audiences to think outside the ordinary.',
+    'She believes good conversation doesn’t stop at asking questions — it opens new space for understanding.',
   ].join('\n\n'),
-  aboutImage: { src: 'assets/images/portraits/neveen-headshot-green.jpg', alt: 'Portrait of Neveen Abuelghait', ratio: '4/5', position: '50% 40%' },
+  aboutImage: { src: 'assets/images/portraits/neveen-about-mic.jpg', alt: 'Neveen Abuelghait at the microphone in the 90s FM studio', ratio: '4/5', position: '50% 22%' },
   highlights: [
     { id: 'hl-01', value: '2+', label: 'Years on air' },
     { id: 'hl-02', value: '3', label: 'Programs hosted' },
@@ -102,6 +104,27 @@ export const profile: Profile = {
     location: 'Cairo, Egypt',
     availability: 'Open to Arabic radio presenting, talk-show hosting and podcast opportunities.',
   },
+
+  services: [
+    { id: 'sv-01', number: '01', title: 'Media Presenting', text: 'Hosting radio, TV and digital programs.' },
+    { id: 'sv-02', number: '02', title: 'Conversation Management', text: 'Moderating interviews, panel discussions, talks and conferences.' },
+    { id: 'sv-03', number: '03', title: 'Content Creation', text: 'Developing media and awareness content for brands and institutions.' },
+    { id: 'sv-04', number: '04', title: 'Media Appearances', text: 'Appearing as a guest on shows, podcasts and media conversations.' },
+    { id: 'sv-05', number: '05', title: 'Public Speaking', text: 'Delivering talks and interactive sessions at events and conferences.' },
+  ],
+
+  pressFeatures: [
+    {
+      id: 'pf-almentor',
+      title: 'Featured on al mentor',
+      description: 'Neveen shared her media experience in a dedicated recording for al mentor, one of the leading learning platforms in the Arab world.',
+      logo: 'assets/images/logos/almentor-white.png',
+      logoName: 'al mentor',
+      cover: { src: 'assets/images/press/almentor-cover.jpg', alt: 'Neveen Abuelghait recording with al mentor', ratio: '4/5', position: '50% 30%' },
+      instagramUrl: 'https://www.instagram.com/p/DBto7iaq5wO/',
+      video: 'assets/video/almentor-feature.mp4',
+    },
+  ],
 
   cvPdf: 'assets/documents/cv-en.pdf', // generated from site data by scripts/build-cv.py
 };

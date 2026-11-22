@@ -31,6 +31,7 @@ export function publishable(c: Content): Content {
     // Episodes without a real title, or with neither a real link nor an audio file, are not ready.
     episodes: s.episodes.filter((e) => e.title && (isRealUrl(e.url) || !!e.audioSrc)),
     gallery: s.gallery.filter((g) => !!g.image.src),
+    guests: s.guests.filter((g) => !!g.image.src),
     experience: s.experience.map((e) => ({ ...e, title: e.title || e.organization })),
     certifications: s.certifications.map((x) => ({ ...x, certificatePdf: undefined, verifyUrl: isRealUrl(x.verifyUrl) ? x.verifyUrl : undefined })),
     profile: {

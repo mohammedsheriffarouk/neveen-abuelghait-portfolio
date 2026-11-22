@@ -49,6 +49,8 @@ html[lang='ar'] .font-mono { font-family: ui-monospace, SFMono-Regular, Menlo, m
 ::selection { background: rgb(var(--wf-accent) / 0.6); }
 
 @layer components {
+  .no-scrollbar { scrollbar-width: none; -ms-overflow-style: none; }
+  .no-scrollbar::-webkit-scrollbar { display: none; }
   .container-wf { @apply mx-auto w-full max-w-content px-5 sm:px-6 lg:px-8; }
   .section-wf { @apply py-16 sm:py-24; }
   .card-wf { @apply rounded-3xl bg-surface; }

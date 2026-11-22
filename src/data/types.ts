@@ -45,7 +45,7 @@ export interface Profile {
   /** Short topic labels shown as the hero's pill stack (one is highlighted at a time). */
   topics?: string[];
   /** Places she has worked/studied — shown as a logo strip. logo: path under public/, else a typographic wordmark. */
-  affiliations?: { id: string; name: string; caption: string; logo?: string }[];
+  affiliations?: { id: string; name: string; caption: string; logo?: string; group?: 'academic' | 'training' }[];
   heroPortrait: ImageRef;
   aboutPreview: string;
   aboutImage: ImageRef;
@@ -71,6 +71,10 @@ export interface Profile {
     photos: ImageRef[];
   };
   careerHighlights: { id: string; title: string; text: string; icon: 'radio' | 'mic' | 'users' | 'message' | 'calendar' | 'award' }[];
+  /** Collaboration offerings shown in the "Work With Me" section. */
+  services: { id: string; number: string; title: string; text: string }[];
+  /** External media recognition (e.g. a platform feature), shown live-embedded and linked back to the source post for authenticity. */
+  pressFeatures?: { id: string; title: string; description: string; logo: string; logoName: string; cover: ImageRef; instagramUrl: string; video?: string }[];
   contact: {
     intro: string;
     email: string;
@@ -207,6 +211,8 @@ export interface Content {
   episodes: MediaItem[];
   mediaCategories: { id: MediaCategory; label: string }[];
   gallery: GalleryItem[];
+  /** Photos of guests in the studio — shown in their own Home section. */
+  guests: GalleryItem[];
   galleryCategories: { id: GalleryCategory; label: string }[];
   experience: Experience[];
   skillGroups: SkillGroup[];

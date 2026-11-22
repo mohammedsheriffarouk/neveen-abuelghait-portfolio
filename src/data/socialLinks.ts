@@ -7,5 +7,5 @@ import type { ExternalLink } from './types';
 export const socialLinks: ExternalLink[] = [
   { platform: 'instagram', label: 'Instagram', url: 'https://www.instagram.com/neveenabuelghait/' },
   { platform: 'spotify', label: 'Spotify', url: 'https://open.spotify.com/show/5flDkBxQZhXljNaKzhdN8O' },
-  { platform: 'facebook', label: 'Facebook', url: 'https://www.facebook.com/profile.php?id=61561366888233' },
+  { platform: 'linkedin', label: 'LinkedIn', url: 'https://www.linkedin.com/in/neveen-abuelghait-989805200/' },
 ];

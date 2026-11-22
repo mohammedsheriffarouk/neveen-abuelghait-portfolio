@@ -48,7 +48,7 @@ function ProgramMeta({ program, className = '' }: { program: Program; className?
   ].filter((r) => r.value);
   if (!rows.length) return null;
   return (
-    <dl className={`grid grid-cols-2 gap-2 rounded-2xl bg-canvas p-3 text-xs ${className}`}>
+    <dl className={`grid gap-2 rounded-2xl bg-canvas p-3 text-xs ${rows.length > 1 ? 'grid-cols-2' : 'grid-cols-1'} ${className}`}>
       {rows.map((r) => <div key={r.label}><dt className="wf-label">{r.label}</dt><dd className="mt-0.5">{r.value}</dd></div>)}
     </dl>
   );

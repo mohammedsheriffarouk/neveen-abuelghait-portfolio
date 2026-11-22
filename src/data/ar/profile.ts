@@ -8,26 +8,28 @@ import type { Profile } from '../types';
 export const profile: Profile = {
   name: 'نيفين أبو الغيط',
   shortName: 'نيفين أبو الغيط',
-  title: 'صانعة محتوى ومقدّمة برامج',
-  headline: 'أفكار عن الوعي، والسلوك الإنساني، والتواصل.',
-  intro: 'أشاركك أفكارًا تفتح زوايا جديدة لفهم الحياة والإنسان.',
+  title: 'إعلامية ومقدمة حوارات متخصصة في الموضوعات الإنسانية والاجتماعية والسلوك والتواصل',
+  headline: 'أقدم محتوى وحوارات تفتح زوايا جديدة لفهم الإنسان والحياة والعلاقات.',
+  intro: 'من خلال الإعلام والحوار وصناعة المحتوى، أشارك أفكارًا تساعدنا على التفكير بوعي والتواصل بشكل أفضل.',
   affiliations: [
-    { id: 'af-90s', name: '90s FM Academy', caption: 'الراديو والتدريب الإذاعي', logo: 'assets/images/logos/90s-fm.png' },
-    { id: 'af-enbd', name: 'Emirates NBD', logo: 'assets/images/logos/emirates-nbd.png', caption: 'القطاع المصرفي' },
-    { id: 'af-marriott', name: 'Marriott', logo: 'assets/images/logos/marriott.png', caption: 'علاقات الضيوف' },
-    { id: 'af-fue', name: 'Future University in Egypt', logo: 'assets/images/logos/fue.png', caption: 'الاقتصاد والعلوم السياسية' },
+    { id: 'af-fue', name: 'Future University in Egypt', logo: 'assets/images/logos/fue.png', caption: 'الاقتصاد والعلوم السياسية', group: 'academic' },
+    { id: 'af-marriott', name: 'Marriott', logo: 'assets/images/logos/marriott.png', caption: 'علاقات الضيوف', group: 'academic' },
+    { id: 'af-enbd', name: 'Emirates NBD', logo: 'assets/images/logos/emirates-nbd.png', caption: 'الخبرة المصرفية', group: 'academic' },
+    { id: 'af-90s', name: '90s FM Academy', caption: 'الراديو والتدريب الإذاعي', logo: 'assets/images/logos/90s-fm.png', group: 'training' },
+    { id: 'af-almentor', name: 'al mentor', caption: 'منصة تعليمية رقمية', logo: 'assets/images/logos/almentor-black.png', group: 'training' },
+    { id: 'af-yanfaa', name: 'ينفع', caption: 'شريك تدريب', logo: 'assets/images/logos/yanfaa.png', group: 'training' },
   ],
   topics: ['الوعي', 'السلوك الإنساني', 'التواصل', '«رأي تاني»', 'الحوار'],
   heroPortrait: { src: 'assets/images/portraits/nevine-headphones.jpg', alt: 'نيفين أبو الغيط بسمّاعات الاستوديو أمام الميكروفون', ratio: '4/5', position: '50% 38%' },
 
   // النص المعتمد من نيفين — فقرات مفصولة بسطر فارغ
   aboutPreview: [
-    'نيفين أبو الغيط إعلامية ومقدّمة برامج وصانعة محتوى فكري، حاصلة على درجة البكالوريوس في الاقتصاد والعلوم السياسية، تخصص العلوم السياسية.',
-    'بدأت مسيرتها المهنية في قطاع العلاقات في فندق ماريوت، ثم انتقلت إلى القطاع المصرفي من خلال عملها في بنك الإمارات دبي الوطني، مما أكسبها خبرة متنوعة في التواصل والتعامل مع الأفراد وفهم احتياجاتهم.',
-    'وانطلاقًا من شغفها بالإعلام والتواصل الإنساني، التحقت ببرنامج تدريبي متخصص في التقديم الإذاعي في تسعينات إف إم، أعقبته تجربة عملية من خلال تسجيل وتقديم حلقات إذاعية عبر الإنترنت.',
-    'تقدّم نيفين حاليًا برنامجها الحواري «رأي تاني» عبر المنصات الرقمية، وهو مشروع إعلامي يطرح رؤى مختلفة حول الحياة والسلوك الإنساني والعلاقات والتفكير الواعي، من خلال طرح أفكار اجتماعية وثقافية وفكرية.',
+    'نيفين أبو الغيط مقدمة برامج وصانعة محتوى إعلامي. حاصلة على درجة البكالوريوس في الاقتصاد والعلوم السياسية، وبدأت مسيرتها المهنية في العلاقات، ثم انتقلت إلى القطاع المصرفي، حيث اكتسبت خبرة في التواصل وفهم احتياجات الأفراد والتعامل مع مختلف الشخصيات.',
+    'انطلاقًا من شغفها بالإعلام وفهم السلوك الإنساني، اتجهت إلى التدريب الإعلامي والتقديم الإذاعي وصناعة المحتوى، لتقدّم مشروعات إعلامية تهتم بالوعي والعلاقات والتواصل والتفكير الإنساني.',
+    'تقدّم حاليًا برنامج «رأي تاني»، الذي يطرح زوايا مختلفة لفهم الحياة والإنسان، ويشجع الجمهور على التفكير خارج المألوف.',
+    'تؤمن أن الحوار الجيد لا يكتفي بطرح الأسئلة، بل يفتح مساحات جديدة للفهم.',
   ].join('\n\n'),
-  aboutImage: { src: 'assets/images/portraits/neveen-headshot-green.jpg', alt: 'بورتريه لنيفين أبو الغيط', ratio: '4/5', position: '50% 40%' },
+  aboutImage: { src: 'assets/images/portraits/neveen-about-mic.jpg', alt: 'نيفين أبو الغيط أمام الميكروفون في استوديو 90s FM', ratio: '4/5', position: '50% 22%' },
   highlights: [
     { id: 'hl-01', value: '2+', label: 'سنوات على الهواء' },
     { id: 'hl-02', value: '3', label: 'برامج قدّمتها' },
@@ -97,6 +99,27 @@ export const profile: Profile = {
     location: 'القاهرة، مصر',
     availability: 'متاحة لفرص التقديم الإذاعي وتقديم البرامج الحوارية والبودكاست باللغة العربية.',
   },
+
+  services: [
+    { id: 'sv-01', number: '01', title: 'التقديم الإعلامي', text: 'تقديم البرامج الإذاعية والتلفزيونية والرقمية.' },
+    { id: 'sv-02', number: '02', title: 'إدارة الحوارات', text: 'إدارة المقابلات والنقاشات والجلسات الحوارية والمؤتمرات.' },
+    { id: 'sv-03', number: '03', title: 'صناعة المحتوى', text: 'تقديم وتطوير محتوى إعلامي وتوعوي للعلامات التجارية والمؤسسات.' },
+    { id: 'sv-04', number: '04', title: 'المشاركة الإعلامية', text: 'المشاركة كضيفة في البرامج والبودكاست والحوارات الإعلامية.' },
+    { id: 'sv-05', number: '05', title: 'التحدث أمام الجمهور', text: 'تقديم الكلمات والجلسات التفاعلية في الفعاليات والمؤتمرات.' },
+  ],
+
+  pressFeatures: [
+    {
+      id: 'pf-almentor',
+      title: 'ظهورها على منصة المنتور',
+      description: 'شاركت نيفين تجربتها الإعلامية في تسجيل خاص لمنصة المنتور، إحدى أبرز منصات التعلّم في العالم العربي.',
+      logo: 'assets/images/logos/almentor-white.png',
+      logoName: 'al mentor',
+      cover: { src: 'assets/images/press/almentor-cover.jpg', alt: 'نيفين أبو الغيط في تسجيل مع منصة al mentor', ratio: '4/5', position: '50% 30%' },
+      instagramUrl: 'https://www.instagram.com/p/DBto7iaq5wO/',
+      video: 'assets/video/almentor-feature.mp4',
+    },
+  ],
 
   cvPdf: 'assets/documents/cv-ar.pdf',
 };
